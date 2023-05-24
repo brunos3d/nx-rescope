@@ -1,6 +1,6 @@
 {
   "name": "nx-rescope",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Update your Nx packages to use the new @nx scope (formerly @nrwl).",
   "main": "index.js",
   "bin": {
