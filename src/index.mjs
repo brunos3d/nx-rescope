@@ -82,6 +82,13 @@ if (packageJson.devDependencies) {
   });
   packageJson.devDependencies = sortObjKeys(newDevDependencies);
 }
+if (packageJson.peerDependencies) {
+  const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxRescopedPlugins);
+  objKeysDiff(newPeerDependencies, packageJson.peerDependencies).forEach((key) => {
+    echo(`Dev dependency ${chalk.red(key)} was renamed to ${chalk.green(newPeerDependencies[key])}`);
+  });
+  packageJson.peerDependencies = sortObjKeys(newPeerDependencies);
+}
 if (updateOverrides && packageJson.overrides) {
   const newOverrDependencies = renameObjKeys(packageJson.overrides, nxRescopedPlugins);
   objKeysDiff(newOverrDependencies, packageJson.overrides).forEach((key) => {
