@@ -20,6 +20,16 @@ The `nx-rescope` tool will do the following:
 
 You can check the current supported rescope/rename packages [here](./src/nx-rescoped-plugins.mjs).
 
+## What does it NOT do?
+
+While the `nx-rescope` tool assists in migrating your workspace to the new scope format, it does not perform the following actions:
+
+- Update the version of the `@nrwl`/`@nx` packages. It focuses on updating the scope format rather than upgrading the package versions.
+- Update the `package.json` files of your individual projects. Only the workspace's `package.json` file will be updated during the migration.
+- Modify other configuration files such as `tsconfig.json`, `jest.config.js`, etc. The tool solely focuses on updating the workspace's `package.json` file.
+
+It's important to note that you may need to handle these aspects manually if necessary.
+
 ## Options
 
 | Option               | Description                                                                                                                                                                            |
