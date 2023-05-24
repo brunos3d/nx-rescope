@@ -1,7 +1,10 @@
-export const nxRescopedPlugins = {
+export const nxRenamedPlugins = {
   '@nrwl/nx-cloud': 'nx-cloud',
   '@nrwl/eslint-plugin-nx': '@nx/eslint-plugin',
   '@nrwl/nx-plugin': '@nx/plugin',
+};
+
+export const nxRescopedPlugins = {
   '@nrwl/angular': '@nx/angular',
   '@nrwl/aws-lambda': '@nx/aws-lambda',
   '@nrwl/cypress': '@nx/cypress',
@@ -30,5 +33,3 @@ export const nxRescopedPlugins = {
   '@nrwl/webpack': '@nx/webpack',
   '@nrwl/workspace': '@nx/workspace',
 };
-
-export default nxRescopedPlugins;

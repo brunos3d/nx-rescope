@@ -5,7 +5,7 @@ import semver from 'semver';
 
 import { detect, getCommand } from '@antfu/ni';
 
-import nxRescopedPlugins from './nx-rescoped-plugins.mjs';
+import { nxRenamedPlugins, nxRescopedPlugins } from './nx-rescoped-plugins.mjs';
 import { renameObjKeys, sortObjKeys, objKeysDiff } from './utils.mjs';
 
 // configure zx
@@ -68,29 +68,31 @@ try {
   process.exit(1);
 }
 
+const nxPluginsMap = { ...nxRenamedPlugins, ...nxRescopedPlugins };
+
 if (packageJson.dependencies) {
-  const newDependencies = renameObjKeys(packageJson.dependencies, nxRescopedPlugins);
+  const newDependencies = renameObjKeys(packageJson.dependencies, nxPluginsMap);
   objKeysDiff(newDependencies, packageJson.dependencies).forEach((key) => {
     echo(`Dependency ${chalk.red(key)} was renamed to ${chalk.green(newDependencies[key])}`);
   });
   packageJson.dependencies = sortObjKeys(newDependencies);
 }
 if (packageJson.devDependencies) {
-  const newDevDependencies = renameObjKeys(packageJson.devDependencies, nxRescopedPlugins);
+  const newDevDependencies = renameObjKeys(packageJson.devDependencies, nxPluginsMap);
   objKeysDiff(newDevDependencies, packageJson.devDependencies).forEach((key) => {
     echo(`Dev dependency ${chalk.red(key)} was renamed to ${chalk.green(newDevDependencies[key])}`);
   });
   packageJson.devDependencies = sortObjKeys(newDevDependencies);
 }
 if (packageJson.peerDependencies) {
-  const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxRescopedPlugins);
+  const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxPluginsMap);
   objKeysDiff(newPeerDependencies, packageJson.peerDependencies).forEach((key) => {
-    echo(`Dev dependency ${chalk.red(key)} was renamed to ${chalk.green(newPeerDependencies[key])}`);
+    echo(`Peer dependency ${chalk.red(key)} was renamed to ${chalk.green(newPeerDependencies[key])}`);
   });
   packageJson.peerDependencies = sortObjKeys(newPeerDependencies);
 }
 if (updateOverrides && packageJson.overrides) {
-  const newOverrDependencies = renameObjKeys(packageJson.overrides, nxRescopedPlugins);
+  const newOverrDependencies = renameObjKeys(packageJson.overrides, nxPluginsMap);
   objKeysDiff(newOverrDependencies, packageJson.overrides).forEach((key) => {
     echo(`Override dependency ${chalk.red(key)} was renamed to ${chalk.green(newOverrDependencies[key])}`);
   });
