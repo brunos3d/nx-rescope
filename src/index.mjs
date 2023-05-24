@@ -71,48 +71,56 @@ try {
 const nxPluginsMap = { ...nxRenamedPlugins, ...nxRescopedPlugins };
 
 if (packageJson.dependencies) {
-  const newDependencies = renameObjKeys(packageJson.dependencies, nxPluginsMap);
-  const diff = objKeysDiff(packageJson.dependencies, newDependencies);
-  if (diff.length > 0) {
-    echo(chalk.blue('Dependencies'));
-    diff.forEach((key, index) => {
-      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
-    });
-  }
-  packageJson.dependencies = sortObjKeys(newDependencies);
+  await spinner(`Updating ${chalk.yellow('dependencies')} section`, async () => {
+    const newDependencies = renameObjKeys(packageJson.dependencies, nxPluginsMap);
+    const diff = objKeysDiff(packageJson.dependencies, newDependencies);
+    if (diff.length > 0) {
+      echo(chalk.blue('dependencies'));
+      diff.forEach((key, index) => {
+        echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+      });
+    }
+    packageJson.dependencies = sortObjKeys(newDependencies);
+  });
 }
 if (packageJson.devDependencies) {
-  const newDevDependencies = renameObjKeys(packageJson.devDependencies, nxPluginsMap);
-  const diff = objKeysDiff(packageJson.devDependencies, newDevDependencies);
-  if (diff.length > 0) {
-    echo(chalk.blue('Dev Dependencies'));
-    diff.forEach((key, index) => {
-      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
-    });
-  }
-  packageJson.devDependencies = sortObjKeys(newDevDependencies);
+  await spinner(`Updating ${chalk.yellow('devDependencies')} section`, async () => {
+    const newDevDependencies = renameObjKeys(packageJson.devDependencies, nxPluginsMap);
+    const diff = objKeysDiff(packageJson.devDependencies, newDevDependencies);
+    if (diff.length > 0) {
+      echo(chalk.blue('devDependencies'));
+      diff.forEach((key, index) => {
+        echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+      });
+    }
+    packageJson.devDependencies = sortObjKeys(newDevDependencies);
+  });
 }
 if (packageJson.peerDependencies) {
-  const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxPluginsMap);
-  const diff = objKeysDiff(packageJson.peerDependencies, newPeerDependencies);
-  if (diff.length > 0) {
-    echo(chalk.blue('Peer Dependencies'));
-    diff.forEach((key, index) => {
-      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
-    });
-  }
-  packageJson.peerDependencies = sortObjKeys(newPeerDependencies);
+  await spinner(`Updating ${chalk.yellow('peerDependencies')} section`, async () => {
+    const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxPluginsMap);
+    const diff = objKeysDiff(packageJson.peerDependencies, newPeerDependencies);
+    if (diff.length > 0) {
+      echo(chalk.blue('peerDependencies'));
+      diff.forEach((key, index) => {
+        echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+      });
+    }
+    packageJson.peerDependencies = sortObjKeys(newPeerDependencies);
+  });
 }
 if (updateOverrides && packageJson.overrides) {
-  const newOverrDependencies = renameObjKeys(packageJson.overrides, nxPluginsMap);
-  const diff = objKeysDiff(packageJson.overrides, newOverrDependencies);
-  if (diff.length > 0) {
-    echo(chalk.blue('Overrides'));
-    diff.forEach((key, index) => {
-      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
-    });
-  }
-  packageJson.overrides = sortObjKeys(newOverrDependencies);
+  await spinner(`Updating ${chalk.yellow('overrides')} section`, async () => {
+    const newOverrDependencies = renameObjKeys(packageJson.overrides, nxPluginsMap);
+    const diff = objKeysDiff(packageJson.overrides, newOverrDependencies);
+    if (diff.length > 0) {
+      echo(chalk.blue('Overrides'));
+      diff.forEach((key, index) => {
+        echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+      });
+    }
+    packageJson.overrides = sortObjKeys(newOverrDependencies);
+  });
 }
 
 if (!dryRun) {
