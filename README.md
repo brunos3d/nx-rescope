@@ -1,6 +1,6 @@
 # nx-rescope
 
-Nx has rescoped the `@nrwl` packages to `@nx` in version 16 ([read more](https://nx.dev/recipes/other/rescope)). This is a tool to help you migrate your workspace to the new scope format.
+The `nx-rescope` tool is designed to assist you in migrating your workspace to the new scope format introduced in Nx version 16. This update involved transitioning the `@nrwl` packages to the `@nx` scope. To learn more about this change, refer to the [official documentation](https://nx.dev/recipes/other/rescope).
 
 ## Usage
 
@@ -8,20 +8,27 @@ Nx has rescoped the `@nrwl` packages to `@nx` in version 16 ([read more](https:/
 npx nx-rescope
 ```
 
+## What does it do?
+
+The `nx-rescope` tool will do the following:
+
+- Update the `@nrwl` dependencies to `@nx`
+- Update the `@nrwl` devDependencies to `@nx`
+- Update the `@nrwl` peerDependencies to `@nx`
+- Update the `@nrwl` overrides to `@nx` (if the `--update-overrides` option is enabled)
+- Install the new dependencies using your preferred package manager
+
+You can check the current supported rescope/rename packages [here](./src/nx-rescoped-plugins.mjs).
+
 ## Options
 
-### `--dry-run`
+| Option               | Description                                                                                                                                                                            |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--dry-run`          | By using this option, the tool will perform a dry run, meaning it will simulate the changes without modifying the package.json file or installing new dependencies.                    |
+| `--force`            | If you encounter any conditions that prevent the execution of the script, you can use the --force option to override these conditions and force the tool to proceed.                   |
+| `--update-overrides` | Enabling this option will update the overrides section of the package.json file, ensuring that it aligns with the new scope format.                                                    |
+| `--skip-install`     | If you don't want the tool to automatically install the new dependencies, you can utilize the --skip-install option. This is useful if you prefer to handle the installation manually. |
 
-Do not save the changes to the package.json file and do not install the new dependencies.
+##
 
-### `--force`
-
-Force the execution of the script even if the conditions are not met.
-
-### `--update-overrides`
-
-Update the overrides section of the package.json file.
-
-### `--skip-install`
-
-Skip the installation of the new dependencies.
+Feel free to modify and enhance this readme file according to your specific project requirements.
