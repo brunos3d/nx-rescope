@@ -9,9 +9,27 @@
   "scripts": {
     "start": "zx ./src/index.mjs"
   },
-  "keywords": [],
-  "author": "Bruno Silva <hi@brunosilva.io> (https://brunosilva.io)",
+  "keywords": [
+    "nx",
+    "monorepo",
+    "rescope",
+    "scope",
+    "update",
+    "packages",
+    "workspace",
+    "migrate",
+    "migration"
+  ],
+  "author": {
+    "name": "Bruno Silva",
+    "email": "hi@brunosilva.io",
+    "url": "https://brunosilva.io"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunos3d/nx-rescope"
+  },
   "dependencies": {
     "@antfu/ni": "^0.21.3",
     "nx": "^16.2.2",
