@@ -8,6 +8,15 @@ The `nx-rescope` tool is designed to assist you in migrating your workspace to t
 npx nx-rescope
 ```
 
+## Warning
+
+Nx already has a built-in command to apply these migrations
+
+```bash
+nx migrate latest
+npx nx migrate --run-migrations --create-commits
+```
+
 ## What does it do?
 
 The `nx-rescope` tool will do the following:
