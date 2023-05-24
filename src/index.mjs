@@ -11,6 +11,21 @@ import { renameObjKeys, sortObjKeys, objKeysDiff } from './utils.mjs';
 // configure zx
 $.verbose = false;
 
+const help = argv['help'] || argv.help || process.argv.includes('--help');
+if (help) {
+  echo(`
+Usage: nx-rescope [options]
+
+Options:
+  --dry-run              Simulate the changes without modifying the package.json file or installing new dependencies
+  --force                Force the tool to proceed even if it encounters any conditions that prevent the execution of the script
+  --update-overrides     Update the overrides section of the package.json file, ensuring that it aligns with the new scope format
+  --skip-install         Do not automatically install the new dependencies
+  --help                 Display this help message
+`);
+  process.exit(0);
+}
+
 // get flags
 const force = argv['force'] || argv.force || process.argv.includes('--force');
 const updateOverrides =

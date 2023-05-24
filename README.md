@@ -34,6 +34,7 @@ It's important to note that you may need to handle these aspects manually if nec
 
 | Option               | Description                                                                                                                                                                            |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--help`             | Display a help message                                                                                                                                                                 |
 | `--dry-run`          | By using this option, the tool will perform a dry run, meaning it will simulate the changes without modifying the package.json file or installing new dependencies.                    |
 | `--force`            | If you encounter any conditions that prevent the execution of the script, you can use the --force option to override these conditions and force the tool to proceed.                   |
 | `--update-overrides` | Enabling this option will update the overrides section of the package.json file, ensuring that it aligns with the new scope format.                                                    |
