@@ -72,30 +72,46 @@ const nxPluginsMap = { ...nxRenamedPlugins, ...nxRescopedPlugins };
 
 if (packageJson.dependencies) {
   const newDependencies = renameObjKeys(packageJson.dependencies, nxPluginsMap);
-  objKeysDiff(newDependencies, packageJson.dependencies).forEach((key) => {
-    echo(`Dependency ${chalk.red(key)} was renamed to ${chalk.green(newDependencies[key])}`);
-  });
+  const diff = objKeysDiff(packageJson.dependencies, newDependencies);
+  if (diff.length > 0) {
+    echo(chalk.blue('Dependencies'));
+    diff.forEach((key, index) => {
+      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+    });
+  }
   packageJson.dependencies = sortObjKeys(newDependencies);
 }
 if (packageJson.devDependencies) {
   const newDevDependencies = renameObjKeys(packageJson.devDependencies, nxPluginsMap);
-  objKeysDiff(newDevDependencies, packageJson.devDependencies).forEach((key) => {
-    echo(`Dev dependency ${chalk.red(key)} was renamed to ${chalk.green(newDevDependencies[key])}`);
-  });
+  const diff = objKeysDiff(packageJson.devDependencies, newDevDependencies);
+  if (diff.length > 0) {
+    echo(chalk.blue('Dev Dependencies'));
+    diff.forEach((key, index) => {
+      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+    });
+  }
   packageJson.devDependencies = sortObjKeys(newDevDependencies);
 }
 if (packageJson.peerDependencies) {
   const newPeerDependencies = renameObjKeys(packageJson.peerDependencies, nxPluginsMap);
-  objKeysDiff(newPeerDependencies, packageJson.peerDependencies).forEach((key) => {
-    echo(`Peer dependency ${chalk.red(key)} was renamed to ${chalk.green(newPeerDependencies[key])}`);
-  });
+  const diff = objKeysDiff(packageJson.peerDependencies, newPeerDependencies);
+  if (diff.length > 0) {
+    echo(chalk.blue('Peer Dependencies'));
+    diff.forEach((key, index) => {
+      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+    });
+  }
   packageJson.peerDependencies = sortObjKeys(newPeerDependencies);
 }
 if (updateOverrides && packageJson.overrides) {
   const newOverrDependencies = renameObjKeys(packageJson.overrides, nxPluginsMap);
-  objKeysDiff(newOverrDependencies, packageJson.overrides).forEach((key) => {
-    echo(`Override dependency ${chalk.red(key)} was renamed to ${chalk.green(newOverrDependencies[key])}`);
-  });
+  const diff = objKeysDiff(packageJson.overrides, newOverrDependencies);
+  if (diff.length > 0) {
+    echo(chalk.blue('Overrides'));
+    diff.forEach((key, index) => {
+      echo(`${index === diff.length - 1 ? '└─' : '├─'} ${chalk.red(key)} => ${chalk.green(nxPluginsMap[key])}`);
+    });
+  }
   packageJson.overrides = sortObjKeys(newOverrDependencies);
 }
 
