@@ -30,6 +30,32 @@ While the `nx-rescope` tool assists in migrating your workspace to the new scope
 
 It's important to note that you may need to handle these aspects manually if necessary.
 
+## What is the recommended approach?
+
+The recommended approach is to use the `nx-rescope` tool in conjunction with the `nx migrate latest` command. This will ensure that your workspace is up-to-date with the latest version of Nx and that the scope format is updated accordingly.
+
+To make sure that your workspace is ready for the migration, you can run the following commands in sequence:
+
+```bash
+nx migrate latest
+```
+
+Then use your package manager of choice to install the new dependencies, and to make sure you are using the latest version of Nx or at least the version 16.0.0:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Finally, run the `nx-rescope` tool to update the scope format:
+
+```bash
+npx nx-rescope
+```
+
 ## Options
 
 | Option               | Description                                                                                                                                                                            |
