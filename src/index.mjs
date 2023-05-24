@@ -125,5 +125,16 @@ if (skipInstall && !dryRun) {
   process.exit(0);
 } else {
   // install the new dependencies
-  await $`ni`;
+  try {
+    const command = getCommand(pmAgent, 'install');
+    await spinner(`Installing dependencies using: ${chalk.yellow(command)}`, () => $`ni`);
+  } catch (error) {
+    echo(
+      `Error while installing dependencies. One of the main reasons for this error is that your current Nx Plugins did not have a version with the new scope.\nIf that is the case, you can try to run "${chalk.yellow(
+        'nx migrate latest'
+      )}" again and then run this command again.`
+    );
+    echo(chalk.red(error.stderr));
+    process.exit(1);
+  }
 }
